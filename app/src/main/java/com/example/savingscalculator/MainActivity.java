@@ -39,8 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationCallbac
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
-        // FragmentActivity saves the current fragment, its state and the complete back stack.
-        // onCreate must not replace this restored fragment when savedInstanceState is present.
+
         super.onSaveInstanceState(outState);
     }
 

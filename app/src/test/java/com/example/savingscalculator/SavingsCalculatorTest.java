@@ -21,7 +21,7 @@ public class SavingsCalculatorTest {
 
     @Test public void computesAllTwelvePurchasesAndTotals() {
         SavingsCalculator.Result result = SavingsCalculator.calculate(10000, 0.5, 40, 52);
-        // Independent reference: 5000/41 + 5000/42 + ... + 5000/52.
+
         double expectedCurrency = 1297.5045588053658;
         assertEquals(120000, result.annualIncome, 0);
         assertEquals(60000, result.currencySpending, 0);

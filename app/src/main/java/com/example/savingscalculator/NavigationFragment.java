@@ -6,7 +6,6 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-/** Binds callbacks to the current host, including after Activity recreation. */
 public abstract class NavigationFragment extends Fragment {
     private NavigationCallbacks callbacks;
 

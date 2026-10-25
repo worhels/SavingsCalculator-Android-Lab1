@@ -1,10 +1,8 @@
-# Android Studio / IntelliJ
 .idea/
 *.iml
 *.ipr
 *.iws
 
-# Gradle and generated build output
 .gradle/
 .kotlin/
 **/build/
@@ -18,7 +16,6 @@ captures/
 *.dex
 *.class
 
-# Signing material, credentials and local environment
 *.jks
 *.keystore
 *.p12
@@ -34,7 +31,6 @@ secrets.properties
 credentials.json
 service-account*.json
 
-# Temporary files and OS metadata
 *.log
 *.tmp
 *.temp

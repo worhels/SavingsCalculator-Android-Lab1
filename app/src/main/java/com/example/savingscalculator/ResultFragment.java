@@ -64,7 +64,7 @@ public class ResultFragment extends NavigationFragment {
             setText(view, R.id.result_sl, hryvnias(format, result.remainingHryvnias));
             setText(view, R.id.result_h, hryvnias(format, result.total));
             setText(view, R.id.result_r, hryvnias(format, result.financialResult));
-            // Ignore floating-point cancellation noise only in the status, not the calculation.
+
             double tolerance = Math.ulp(result.annualIncome) * 32;
             boolean positive = result.financialResult > tolerance;
             boolean negative = result.financialResult < -tolerance;
@@ -88,7 +88,7 @@ public class ResultFragment extends NavigationFragment {
     }
 
     private String hryvnias(NumberFormat format, double value) {
-        // Prevent a rounded negative zero in the display only.
+
         return getString(R.string.sc_hryvnia_amount, format.format(Math.abs(value) < 0.005 ? 0 : value));
     }
 
