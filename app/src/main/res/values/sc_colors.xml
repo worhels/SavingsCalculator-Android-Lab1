@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="sc_background">#111827</color>
+    <color name="sc_surface">#1B2B3C</color>
+    <color name="sc_text">#F9FAFB</color>
+    <color name="sc_text_secondary">#ADBBD0</color>
+    <color name="sc_accent">#7DE8C7</color>
+    <color name="sc_on_accent">#10221C</color>
+    <color name="sc_button_secondary">#314258</color>
+    <color name="sc_error">#FFB4AB</color>
+</resources>

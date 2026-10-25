@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="sc_screen_padding">28dp</dimen>
+    <dimen name="sc_logo_size">88dp</dimen>
+    <dimen name="sc_logo_text">46sp</dimen>
+    <dimen name="sc_logo_gap">25dp</dimen>
+    <dimen name="sc_small_gap">12dp</dimen>
+    <dimen name="sc_medium_gap">20dp</dimen>
+    <dimen name="sc_large_gap">42dp</dimen>
+    <dimen name="sc_title_text">26sp</dimen>
+    <dimen name="sc_subtitle_text">20sp</dimen>
+    <dimen name="sc_body_text">15sp</dimen>
+    <dimen name="sc_button_text">16sp</dimen>
+    <dimen name="sc_caption_text">12sp</dimen>
+    <dimen name="sc_button_height">56dp</dimen>
+    <dimen name="sc_input_radius">16dp</dimen>
+    <dimen name="sc_button_radius">28dp</dimen>
+</resources>
