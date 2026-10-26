@@ -1,0 +1,3 @@
+# currency,start,end
+USD,40.00,42.00
+EUR,44.00,46.00

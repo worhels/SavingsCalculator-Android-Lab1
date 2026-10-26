@@ -51,11 +51,4 @@ public class SavingsCalculatorTest {
                 () -> SavingsCalculator.calculate(Double.MAX_VALUE, 0.5, 40, 42));
     }
 
-    @Test public void usesExplicitDemoRates() {
-        assertEquals(40, DemoExchangeRates.forCurrency("USD").start, 0);
-        assertEquals(42, DemoExchangeRates.forCurrency("USD").end, 0);
-        assertEquals(44, DemoExchangeRates.forCurrency("EUR").start, 0);
-        assertEquals(46, DemoExchangeRates.forCurrency("EUR").end, 0);
-        assertThrows(IllegalArgumentException.class, () -> DemoExchangeRates.forCurrency("GBP"));
-    }
 }

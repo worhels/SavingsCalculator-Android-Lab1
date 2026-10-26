@@ -7,7 +7,7 @@
     <string name="sc_start">Почати розрахунок</string>
     <string name="sc_exit">Вийти</string>
     <string name="sc_next_step">Екран розрахунку додамо наступним кроком</string>
-    <string name="sc_lab_tag">Лабораторна робота №1 · Варіант 14</string>
+    <string name="sc_lab_tag">Лабораторна робота №2 · Варіант 14</string>
     <string name="sc_income_title">Розрахунок доходу</string>
     <string name="sc_income_label">Місячний дохід M, грн</string>
     <string name="sc_share_label">Частка доходу p</string>
@@ -45,4 +45,8 @@
     <string name="sc_currency_amount">%1$s %2$s</string>
     <string name="sc_rate_value">%1$s грн/%2$s</string>
     <string name="sc_ok">Ок</string>
+    <string name="sc_calculation_loading">Завантажуємо курси та виконуємо розрахунок…</string>
+    <string name="sc_calculation_error">Не вдалося виконати розрахунок. Перевірте файл курсів і повторіть спробу.</string>
+    <string name="sc_calculation_retry">Повторити</string>
+    <string name="sc_rates_source">Курси завантажено з текстового файлу. Значення демонстраційні.</string>
 </resources>
