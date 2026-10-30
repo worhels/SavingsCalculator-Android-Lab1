@@ -5,36 +5,48 @@
     android:layout_height="match_parent"
     android:background="@color/sc_background"
     android:theme="@style/ThemeOverlay.SavingsCalculator.Income">
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <LinearLayout
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="@dimen/sc_screen_padding">
+            android:paddingStart="@dimen/sc_screen_padding"
+            android:paddingEnd="@dimen/sc_screen_padding">
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/currency_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="96dp"
                 android:accessibilityHeading="true"
                 android:gravity="center"
                 android:text="@string/sc_currency_title"
                 android:textColor="@color/sc_text"
                 android:textSize="@dimen/sc_title_text"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <RadioGroup
                 android:id="@+id/group_currency"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sc_large_gap"
                 android:checkedButton="@id/radio_usd"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/currency_title">
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/radio_usd"
                     android:layout_width="match_parent"
@@ -44,6 +56,7 @@
                     android:textColor="@color/sc_text"
                     android:textSize="@dimen/sc_subtitle_text"
                     app:useMaterialThemeColors="true" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/radio_eur"
                     android:layout_width="match_parent"
@@ -55,30 +68,40 @@
                     android:textSize="@dimen/sc_subtitle_text"
                     app:useMaterialThemeColors="true" />
             </RadioGroup>
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_currency_calculate"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/sc_button_height"
                 android:layout_marginTop="@dimen/sc_large_gap"
                 android:backgroundTint="@color/sc_accent"
+                android:minHeight="@dimen/sc_button_height"
                 android:text="@string/sc_calculate"
                 android:textAllCaps="false"
                 android:textColor="@color/sc_on_accent"
                 android:textSize="@dimen/sc_button_text"
-                app:cornerRadius="@dimen/sc_button_radius" />
+                app:cornerRadius="@dimen/sc_button_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/group_currency" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_currency_back"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:minHeight="@dimen/sc_button_height"
                 android:layout_marginTop="@dimen/sc_small_gap"
+                android:layout_marginBottom="24dp"
                 android:backgroundTint="@color/sc_button_secondary"
+                android:minHeight="@dimen/sc_button_height"
                 android:text="@string/sc_back"
                 android:textAllCaps="false"
                 android:textColor="@color/sc_text"
                 android:textSize="@dimen/sc_button_text"
-                app:cornerRadius="@dimen/sc_button_radius" />
-        </LinearLayout>
+                app:cornerRadius="@dimen/sc_button_radius"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_currency_calculate" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

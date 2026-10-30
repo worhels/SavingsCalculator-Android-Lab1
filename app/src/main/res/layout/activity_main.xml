@@ -5,57 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/sc_background">
+
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-        <LinearLayout
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="@dimen/sc_screen_padding">
+            android:paddingStart="@dimen/sc_screen_padding"
+            android:paddingEnd="@dimen/sc_screen_padding">
+
             <TextView
+                android:id="@+id/home_logo"
                 android:layout_width="@dimen/sc_logo_size"
                 android:layout_height="@dimen/sc_logo_size"
+                android:layout_marginTop="64dp"
                 android:background="@drawable/sc_logo_background"
                 android:gravity="center"
                 android:text="@string/sc_currency_symbol"
                 android:textColor="@color/sc_accent"
-                android:textSize="@dimen/sc_logo_text" />
+                android:textSize="@dimen/sc_logo_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/home_title"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sc_logo_gap"
                 android:gravity="center"
                 android:text="@string/sc_title"
                 android:textColor="@color/sc_text"
                 android:textSize="@dimen/sc_title_text"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_logo" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/home_subtitle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sc_small_gap"
                 android:gravity="center"
                 android:text="@string/sc_subtitle"
                 android:textColor="@color/sc_text"
-                android:textSize="@dimen/sc_subtitle_text" />
+                android:textSize="@dimen/sc_subtitle_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_title" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/home_description"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sc_medium_gap"
                 android:gravity="center"
                 android:text="@string/sc_description"
                 android:textColor="@color/sc_text_secondary"
-                android:textSize="@dimen/sc_body_text" />
+                android:textSize="@dimen/sc_body_text"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_subtitle" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_start"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/sc_button_height"
                 android:layout_marginTop="@dimen/sc_large_gap"
                 android:backgroundTint="@color/sc_accent"
@@ -63,10 +85,14 @@
                 android:textAllCaps="false"
                 android:textColor="@color/sc_on_accent"
                 android:textSize="@dimen/sc_button_text"
-                app:cornerRadius="@dimen/sc_button_radius" />
+                app:cornerRadius="@dimen/sc_button_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_description" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_exit"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="@dimen/sc_button_height"
                 android:layout_marginTop="@dimen/sc_small_gap"
                 android:backgroundTint="@color/sc_button_secondary"
@@ -74,15 +100,25 @@
                 android:textAllCaps="false"
                 android:textColor="@color/sc_text"
                 android:textSize="@dimen/sc_button_text"
-                app:cornerRadius="@dimen/sc_button_radius" />
+                app:cornerRadius="@dimen/sc_button_radius"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_start" />
+
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/home_lab_tag"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/sc_large_gap"
+                android:layout_marginBottom="32dp"
                 android:gravity="center"
                 android:text="@string/sc_lab_tag"
                 android:textColor="@color/sc_text_secondary"
-                android:textSize="@dimen/sc_caption_text" />
-        </LinearLayout>
+                android:textSize="@dimen/sc_caption_text"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_exit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

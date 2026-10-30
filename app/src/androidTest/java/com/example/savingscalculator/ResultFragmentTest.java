@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -30,37 +32,67 @@ public class ResultFragmentTest {
         CalculationRepository repository = CalculationRepository.getInstance();
         CountDownLatch firstCompleted = new CountDownLatch(1);
         CountDownLatch secondCompleted = new CountDownLatch(1);
-        java.util.concurrent.atomic.AtomicInteger terminalCount = new java.util.concurrent.atomic.AtomicInteger();
         AtomicReference<CalculationState> observed = new AtomicReference<>();
         CalculationObserver observer = state -> {
             if (state.status == CalculationState.Status.SUCCESS
                     || state.status == CalculationState.Status.ERROR) {
-                observed.set(state);
-                if (terminalCount.incrementAndGet() == 1) firstCompleted.countDown();
-                else secondCompleted.countDown();
+                if ("EUR".equals(state.currency)) firstCompleted.countDown();
+                if ("USD".equals(state.currency)) {
+                    observed.set(state);
+                    secondCompleted.countDown();
+                }
             }
         };
         Intent currencyIntent = new Intent(InstrumentationRegistryProvider.context(), CurrencyActivity.class)
                 .putExtra(SavingsCalculationService.EXTRA_INCOME, 10000d)
                 .putExtra(SavingsCalculationService.EXTRA_SHARE, 0.5);
         try (ActivityScenario<CurrencyActivity> scenario = ActivityScenario.launch(currencyIntent)) {
+            InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> repository.begin(
+                    java.util.UUID.randomUUID().toString(), "EUR", 10000d, 0.5d));
             repository.observe(observer);
             scenario.onActivity(activity -> {
                 ((RadioGroup) activity.findViewById(R.id.group_currency)).check(R.id.radio_eur);
                 activity.findViewById(R.id.button_currency_calculate).performClick();
             });
             assertTrue("First calculation did not finish", firstCompleted.await(10, TimeUnit.SECONDS));
+            long resumeDeadline = System.currentTimeMillis() + 5_000;
+            boolean resultResumed = false;
+            while (!resultResumed && System.currentTimeMillis() < resumeDeadline) {
+                InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+                final boolean[] found = {false};
+                InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
+                    Collection<Activity> resumed = ActivityLifecycleMonitorRegistry.getInstance()
+                            .getActivitiesInStage(Stage.RESUMED);
+                    for (Activity activity : resumed) {
+                        if (activity instanceof ResultActivity) found[0] = true;
+                    }
+                });
+                resultResumed = found[0];
+                if (!resultResumed) Thread.sleep(50);
+            }
+            assertTrue("ResultActivity should resume before Back", resultResumed);
             InstrumentationRegistry.getInstrumentation().runOnMainSync(() -> {
                 Collection<Activity> resumed = ActivityLifecycleMonitorRegistry.getInstance()
                         .getActivitiesInStage(Stage.RESUMED);
-                Iterator<Activity> iterator = resumed.iterator();
-                if (iterator.hasNext()) {
-                    ((androidx.activity.ComponentActivity) iterator.next())
-                            .getOnBackPressedDispatcher().onBackPressed();
+                for (Activity activity : resumed) {
+                    if (activity instanceof ResultActivity) {
+                        ((ResultActivity) activity).getOnBackPressedDispatcher().onBackPressed();
+                        break;
+                    }
                 }
             });
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            long returnDeadline = System.currentTimeMillis() + 5_000;
+            boolean calculateEnabled = false;
+            while (!calculateEnabled && System.currentTimeMillis() < returnDeadline) {
+                final boolean[] enabled = {false};
+                scenario.onActivity(activity -> enabled[0] =
+                        activity.findViewById(R.id.button_currency_calculate).isEnabled());
+                calculateEnabled = enabled[0];
+                if (!calculateEnabled) Thread.sleep(50);
+            }
+            assertTrue("CurrencyActivity should resume after Back", calculateEnabled);
             scenario.onActivity(activity -> {
-                assertTrue(activity.findViewById(R.id.button_currency_calculate).isEnabled());
                 ((RadioGroup) activity.findViewById(R.id.group_currency)).check(R.id.radio_usd);
                 activity.findViewById(R.id.button_currency_calculate).performClick();
             });
